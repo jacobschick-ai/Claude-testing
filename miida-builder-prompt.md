@@ -115,10 +115,12 @@ rule.
   - `authorizeInternalStaffAction(user, actionKey)`: for Miida-internal pages that
     touch no client data (e.g. Miida's own sales pipeline).
 - Replace every ad-hoc check above with the guard.
-- Remove the `role === "admin" && !team_title => elder` shortcut everywhere. If any
-  real Elder account relies on it, list those accounts in the report instead of
-  guessing, so the owner can set `team_title = "head"` and `full_access = true`
-  properly.
+- Remove the `role === "admin" && !team_title => elder` shortcut everywhere. The
+  owner has confirmed the intended Elder Heads are `jacob.schick.b@gmail.com` and
+  `jjhdz517@gmail.com`. Both are already stored correctly as `team_title = "head"` +
+  `full_access = true`, so no Elder relies on the shortcut. Do not change any User
+  record's role, title or access. If you find any other account that would gain or
+  lose access because of this change, list it in the report.
 - If a function is platform-only and touches no client data, say so in a one-line
   comment and use `authorizeInternalStaffAction`.
 
