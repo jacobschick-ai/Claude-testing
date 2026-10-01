@@ -245,6 +245,24 @@ Written October 1, 2026, at the end of a long build session. Paste this whole fi
 Plan each step with the owner before doing it, per rule 1. Run the release check and checkpoint after each.
 
 ### Status log (newest first)
+- **Oct 1 — Client portal clarified.** `/client-portal/<workspace_id>` is a sign-in page branded with a client's own colors, for that workspace's **owner and invited teammates** (`verify-portal-membership` refuses staff and other workspaces). It is NOT for clients' customers. The 18+ box there counts as a client's first sign-in, so it stays.
+- **Oct 1 — NEW owner requests, being planned (not built). Cookies (task 2) come right after this plan is agreed.**
+  - **Task 6, public guide bubble.** An AI bubble on the main/public pages for prospective clients who aren't signed in. It answers what Miida is, plans, and where to find things, under restrictions:
+    - no workspace data;
+    - no account actions;
+    - no promises beyond what's published;
+    - links to the audit booking and contact pages;
+    - rate limited.
+    - It needs a new public function, which must be added to `tests/test-public-functions.mjs` with a reason.
+    - Once signed in, the user gets **the same bubble as in their workspace**.
+  - **Task 7, workspace bubble upgrade.** `ClientHelperBubble` + `client-helper-ai` currently only sees counts and switched-on features. The owner wants it to read the client's current data: a daily update, new things to do, and answers to anything asked.
+    - It must only read that workspace, respect a member's own page permissions, be read-only (suggest and link, never change), cap the data size and stay rate limited.
+- **Open questions sent to the owner:**
+  1. Which pages the public bubble appears on.
+  2. Whether it may collect contact details.
+  3. Whether the daily update is automatic or on a "Today" button.
+  4. Whether the workspace bubble stays read-only.
+  5. The public bubble's limits.
 - **Oct 1 — Task 1 DONE** (checkpoint "Task 1: 18+ box only at client first sign-in…", `6abe913890091827de367058`; release check 117/117).
   - **Where the 18+ box now appears:**
     - sign-up (`Register.jsx`) and the Google first sign-in (`Login.jsx`);
