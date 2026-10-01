@@ -245,6 +245,15 @@ Written October 1, 2026, at the end of a long build session. Paste this whole fi
 Plan each step with the owner before doing it, per rule 1. Run the release check and checkpoint after each.
 
 ### Status log (newest first)
+- **Oct 1 — Task 2 (cookies) DONE.** Release check 118/118; checkpoint "Task 2: cookie box…".
+  - **The choice:** `src/lib/cookieConsent.js` stores it in localStorage key `miida_cookie_choice`, version 1. Optional tracking is off unless it's exactly `analytics: true`; blocked, broken or old storage counts as off.
+  - **The box:** `src/components/CookieConsentBox.jsx` is mounted in `App.jsx`. It's small, in the bottom-left, shown only when no choice is stored, with "No thanks" and "Allow". It's hidden on `/ClientOffer`, because offer pages already ask separately ("Accept measurement") before loading a client's Meta Pixel.
+  - **Changing the choice:** a "Cookie settings" link in `LandingFooter` and a "Change cookie settings" button in the Privacy Policy reopen it. Turning analytics off after allowing it reloads the page.
+  - **Base44 usage analytics:** `src/api/base44Client.js` passes `analytics: { enabled: analyticsAllowed() }`. Because it's read at start-up, an Allow takes effect from the next page load.
+  - **Base44 page-visit tracker:** the build-time tracker is off (`analyticsTracker: false` in `vite.config.js`). It's replaced by `src/lib/pageViewLog.js`, which runs only after Allow (immediately on click).
+  - **Privacy Policy:** the cookies section rewritten as: necessary storage always on; optional tracking off by default and on only after Allow; offer pages ask separately for the client's Meta Pixel.
+  - **Tests:** `tests/test-cookie-consent.mjs`.
+  - **Next:** task 6 (public guide bubble). Caps: 10 per visitor per hour, 150 a day site-wide; when hit, point people to audit booking.
 - **Oct 1 — More owner decisions:**
   - **AI caps (for task 6):**
     - public bubble: **10 messages per visitor per hour**, **150 a day site-wide**;
@@ -311,7 +320,7 @@ Plan each step with the owner before doing it, per rule 1. Run the release check
 - **Guest limit:** the owner wants it **smaller than 300 per hour**. Propose a number (around 30–50/hour), confirm with him, then change `GUEST_CONFIRMS_PER_HOUR` in `base44/functions/confirm-age-eligibility/entry.ts`.
 - **Privacy Policy:** add a line that Miida records the 18+ confirmation, with a guest session ID, for signed-out audit bookings and new accounts.
 
-### Task 2 — Cookie consent box (the owner wants it now)
+### Task 2 — Cookie consent box — DONE (see status log)
 - Show a small box to **first-time visitors**. Every optional category is **OFF by default** until the visitor clicks **Allow**. Add a way to change the choice later, such as a "Cookie settings" link in the footer.
 - It must actually work:
   - Gate the client-offer **Meta Pixel** (`src/lib/clientOfferPixel.js`, used by `ClientOffer.jsx`) on consent.
