@@ -245,6 +245,17 @@ Written October 1, 2026, at the end of a long build session. Paste this whole fi
 Plan each step with the owner before doing it, per rule 1. Run the release check and checkpoint after each.
 
 ### Status log (newest first)
+- **Oct 1 — More owner decisions:**
+  - **AI caps (for task 6):**
+    - public bubble: **10 messages per visitor per hour**, **150 a day site-wide**;
+    - when a cap is reached, the bubble stops answering and points people to **Book a Free Automation Audit**, with the contact form as backup;
+    - both bubbles use the standard 1-credit AI.
+  - **Plan descriptions:** the owner will update the Essentials and Pro plan descriptions himself so clients know how things work.
+  - **Client portal, final meaning:**
+    - It's a login for one specific workspace, made to be **embedded (iframe) in the client's own website**. It covers the main workspace plus the team workspaces the owner will later be able to create through their own permissions.
+    - **When the company severs, all its data is saved onto that website, connected through an API,** so the automation no longer depends on Miida's API.
+    - The login stays **hidden until the client needs their own login for their own website** (task 8).
+  - **Task 2 (cookies) started.**
 - **Oct 1 — Client portal: the owner's real intent.**
   - `/client-portal/<workspace_id>` is for a workspace that has been **moved onto its own website but not severed**.
   - The portal sign-in stays **hidden for every workspace until the workspace is connected to an external "spoke" app** (Connected Sites). Then the company and its team/staff sign in through it, still connected to Miida visually through an API.
