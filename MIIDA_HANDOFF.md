@@ -16,6 +16,12 @@ Written October 1, 2026, at the end of a long build session. Paste this whole fi
 - **Saving work:** file edits auto-commit, but only a **checkpoint** is restorable. Checkpoint after every unit of work.
 - **Latest checkpoint:** "Staff assistant role from stored user; stored record also fills nested user data" (`6abe8142ef5b3b0cb7306b4c`).
 
+**Where this file lives:**
+- In the app it's `docs/prelaunch-decisions.md`, the builder's context file. `AGENTS.md` points to it.
+- On GitHub it's `MIIDA_HANDOFF.md` (repo `jacobschick-ai/Claude-testing`, branch `claude/cloud-sessions-overview-nwikmy`).
+- **Whoever is building must update the app copy after every finished step,** with what changed, new decisions and what's next, until launch.
+- When the owner says "handoff", paste the full current file into the reply.
+
 **Owner:** Jacob (jacob.schick.b@gmail.com), the founder. He is not a developer yet and wants to learn the code later. Explain things in plain language.
 
 **Working rules. These are non-negotiable and the owner set every one of them.**
@@ -237,6 +243,9 @@ Written October 1, 2026, at the end of a long build session. Paste this whole fi
 ## 7. APPROVED NEXT TASKS (owner said "I like the proposed fix" — do these next)
 
 Plan each step with the owner before doing it, per rule 1. Run the release check and checkpoint after each.
+
+### Status log (newest first)
+- **Oct 1:** The handoff was put into `docs/prelaunch-decisions.md` (the app's builder context file), and `AGENTS.md` now points to it. Task 1's plan was sent to the owner, proposing **30 per hour** for the guest limit. **Waiting for his go-ahead.** No code for tasks 1–5 has been changed yet.
 
 ### Task 1 — Age confirmation (18+)
 - **Owner's rule:** only **clients** check the 18+ box, and only when **signing in for the first time** or **booking an audit while signed out**. Nowhere else.
