@@ -245,6 +245,17 @@ Written October 1, 2026, at the end of a long build session. Paste this whole fi
 Plan each step with the owner before doing it, per rule 1. Run the release check and checkpoint after each.
 
 ### Status log (newest first)
+- **Oct 1 — NEW owner request (task 9, being investigated and planned, not built). Big, multi-step.**
+  - **Client offer pages, explained to the owner:**
+    - `mid-a.com/ClientOffer?id=<automation>` is a landing page the **Marketing autopilot** builds for a client's Meta ad.
+    - Ads run through the client's connected Meta page and ad account. The ad's button goes to Miida's page, where the visitor fills in an enquiry, which is saved as `MarketingEnquiry` with the client's workspace ID.
+    - Meta only gets a "Lead" event, and only if the visitor accepted the pixel.
+    - Enquiries show only in the client's Marketing section and in the export. **They are NOT added to the client's CRM.** The owner said "yeah" to adding that (confirm in the plan).
+  - **The owner wants:**
+    1. The **Marketing page** cleaned up, reorganized and made intuitive for any Miida team member with access, as if teaching a newly onboarded team member how to launch a campaign for a client and how to manually track that client's leads.
+    2. **Lead Finder AI.** It's another Base44 app (internal tool, currently connected to the Prospects page). Move its **Meta aspects into the Marketing entity in the Miida admin hub**, and move its **prospecting / client-finding part, with the checklist, entirely into the Prospects tab**.
+    3. Everything easy to control, see and understand, with pages leading into each other step by step **"like a treasure hunt"** ("after you're done with this, go here"). It's all set up already; the owner wants it **easy to repeat, easy to learn and easy to access**.
+  - **Still queued:** task 6 (public guide bubble, approved), task 7, task 8.
 - **Oct 1 — Task 2 (cookies) DONE.** Release check 118/118; checkpoint "Task 2: cookie box…".
   - **The choice:** `src/lib/cookieConsent.js` stores it in localStorage key `miida_cookie_choice`, version 1. Optional tracking is off unless it's exactly `analytics: true`; blocked, broken or old storage counts as off.
   - **The box:** `src/components/CookieConsentBox.jsx` is mounted in `App.jsx`. It's small, in the bottom-left, shown only when no choice is stored, with "No thanks" and "Allow". It's hidden on `/ClientOffer`, because offer pages already ask separately ("Accept measurement") before loading a client's Meta Pixel.
