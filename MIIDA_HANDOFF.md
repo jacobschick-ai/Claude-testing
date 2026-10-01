@@ -245,9 +245,22 @@ Written October 1, 2026, at the end of a long build session. Paste this whole fi
 Plan each step with the owner before doing it, per rule 1. Run the release check and checkpoint after each.
 
 ### Status log (newest first)
+- **Oct 1 — Task 1 DONE** (checkpoint "Task 1: 18+ box only at client first sign-in…", `6abe913890091827de367058`; release check 117/117).
+  - **Where the 18+ box now appears:**
+    - sign-up (`Register.jsx`) and the Google first sign-in (`Login.jsx`);
+    - a new one-time workspace screen, `src/components/ClientAgeOnboarding.jsx`, mounted in `Layout.jsx`. It shows for clients and `member` teammates with no confirmation record, never for staff or when viewing-as;
+    - the audit page for **signed-out** visitors only (`SignedOutAgeGate` in `AutomationAudit.jsx`);
+    - phone-booked audits through Retell (the caller is signed out).
+  - **Removed from:** the client support chat, the helper bubble, the staff assistant chat, the membership purchase checkbox, and the age payload in `staffAssistant.js`, `supportAI.js` and `sendClientMessage.js`.
+  - **Server:** the AI chats, `send-client-message` and `create-checkout` now call the new `checkUnderageDisclosure()` in `base44/shared/ageEligibility.ts` instead of `requireAgeEligibility`. There's no checkbox, but if someone says they're under 18 it's recorded for owner review and blocked, and anyone already blocked stays blocked.
+  - **Audit booking** (`auditBookingService.ts`): signed in uses `checkUnderageDisclosure`; signed out uses `requireAgeEligibility`.
+  - **Guest limit:** `GUEST_CONFIRMS_PER_HOUR = 30`.
+  - **Privacy Policy:** the Children's Privacy section now says the confirmation is recorded and that disclosure stops the account.
+  - **Tests:** new `tests/test-age-confirmation-scope.mjs`; updated test-client-helper, test-audit-connected and test-support-handoff.
+  - **OPEN QUESTION for the owner:** the **client portal** (`/client-portal/:workspace_id`, used by a client's own customers) still asks for 18+ at first sign-in. Keep or remove? The owner said "only clients", and portal users are clients' customers.
 - **Oct 1:** The handoff was put into `docs/prelaunch-decisions.md` (the app's builder context file), and `AGENTS.md` now points to it. Task 1's plan was sent to the owner, proposing **30 per hour** for the guest limit. **Waiting for his go-ahead.** No code for tasks 1–5 has been changed yet.
 
-### Task 1 — Age confirmation (18+)
+### Task 1 — Age confirmation (18+) — DONE (see status log)
 - **Owner's rule:** only **clients** check the 18+ box, and only when **signing in for the first time** or **booking an audit while signed out**. Nowhere else.
 - **Current state:** `requireAgeEligibility` runs in several places:
   - `confirm-age-eligibility`, called from `Login.jsx`, `Register.jsx` and `ClientPortal.jsx`;
