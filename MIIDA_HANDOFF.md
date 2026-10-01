@@ -245,7 +245,17 @@ Written October 1, 2026, at the end of a long build session. Paste this whole fi
 Plan each step with the owner before doing it, per rule 1. Run the release check and checkpoint after each.
 
 ### Status log (newest first)
-- **Oct 1 — Client portal clarified.** `/client-portal/<workspace_id>` is a sign-in page branded with a client's own colors, for that workspace's **owner and invited teammates** (`verify-portal-membership` refuses staff and other workspaces). It is NOT for clients' customers. The 18+ box there counts as a client's first sign-in, so it stays.
+- **Oct 1 — Client portal: the owner's real intent.**
+  - `/client-portal/<workspace_id>` is for a workspace that has been **moved onto its own website but not severed**.
+  - The portal sign-in stays **hidden for every workspace until the workspace is connected to an external "spoke" app** (Connected Sites). Then the company and its team/staff sign in through it, still connected to Miida visually through an API.
+  - **On severing, that connection is cut.** The client then either gets Miida services through a separate website Miida runs for people like them, or **sunsets**: they take over the setup themselves, or hand it to someone they work with.
+  - The 18+ box there counts as a client's first sign-in, so it stays.
+  - **FOUND GAP → task 8:** the public `get-client-portal-branding` returns the name, logo and colors for ANY workspace ID even when `client_portal_enabled` is false, so the page isn't hidden. Fix: return "not found" unless the portal is enabled AND connected to a spoke, and cut it on sever.
+- **Oct 1 — Bubble decisions (owner approved; task 6/7 details are in the next entry):**
+  - **Public bubble:** on every public page except sign-in, sign-up and the legal pages. It **never collects any data** and only points people to the forms (audit booking, contact). After sign-in it becomes the same bubble as in the workspace.
+  - **Workspace bubble:** a gold dot once a day when there's something new, plus a "Today" button. Stays **read-only** for now.
+  - **Limits:** the owner asked how expensive messages are. The answer: costs are in Base44 integration credits. Third-party sources say about 1 credit per call on the default AI, ~5 on Gemini Flash and ~15 on the top model. Plans include roughly 2,000 (Starter), 10,000 (Builder), 20,000 (Pro) and 50,000 (Elite) credits a month. Emails use credits too, and running out can stop emails and AI for everyone. Caps are pending his reply.
+  - **Order:** cookies (task 2) next, then task 6, task 7, then task 8 (hide the portal).
 - **Oct 1 — NEW owner requests, being planned (not built). Cookies (task 2) come right after this plan is agreed.**
   - **Task 6, public guide bubble.** An AI bubble on the main/public pages for prospective clients who aren't signed in. It answers what Miida is, plans, and where to find things, under restrictions:
     - no workspace data;
